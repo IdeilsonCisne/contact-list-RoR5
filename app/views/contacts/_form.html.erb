@@ -1,2 +1,8 @@
-oioi
-<br>
+<%= form_for contact, url: {action: @action}, html: {class: "nifty_form"} do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+  <%= f.label :phone %><br />
+  <%= f.text_field :phone %><br /><br />
+
+  <%= f.submit "Send", class:"btn btn-success" %>
+<% end %>
