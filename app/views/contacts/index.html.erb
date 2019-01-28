@@ -16,9 +16,9 @@
           <td><%= contact.id  %></td>
           <td><%= contact.name %></td>
           <td><%= contact.phone %></td>
-          <td><a href="contacts/<%= contact.id %>" class="btn btn-info">Show</a></td>
-          <td><a href="contacts/<%= contact.id %>/edit" class="btn btn-warning">Edit</a></td>
-          <td><a href="contacts/<%= contact.id %>" class="btn btn-danger">Destroy</a></td>
+          <td><%= link_to "Show", contact_path(contact), class:"btn btn-info" %></td>
+          <td><%= link_to "Edit", edit_contact_path(contact), class:"btn btn-warning" %></td>
+          <td><%= link_to "Destroy", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
         </tr>
       <% end  %>
     </tbody>
