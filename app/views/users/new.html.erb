@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1>Cadastra-se</h1>
+    <h1>Register</h1>
   </div>
 
   <div class="col-md-6 col-md-offset-3 col-xs-12">
     <%= form_for @user do |f| %>
-      <%#= render 'layouts/error_messages', object: f.object %>
+      <%= render 'layouts/error_messages', object: f.object %>
 
       <div class="form-group">
         <%= f.label :name %>
@@ -27,7 +27,7 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
-      <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
+      <%= f.submit 'To register', class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

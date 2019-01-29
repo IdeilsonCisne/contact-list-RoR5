@@ -21,17 +21,17 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.save
-      redirect_to contacts_path, alert: "Contato criado com sucesso!"
+      redirect_to contacts_path, alert: "Contact created successfully!"
     else
-      render :new, alert: "Falha ao criar contato!"
+      render :new, alert: "Failed to create contact!"
     end
   end
 
   def update
     if Contact.find(params[:id]).update(contact_params)
-      redirect_to contacts_path, alert: "Contato atualizado com sucesso!"
+      redirect_to contacts_path, alert: "Contact updated successfully!"
     else
-      render :edit, alert: "Falha ao atualizar contato!"
+      render :edit, alert: "Failed to update contact!"
     end
   end
 
