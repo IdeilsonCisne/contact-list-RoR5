@@ -1,10 +1,12 @@
 class ContactsController < ApplicationController
+  before_action :require_logged_in_user
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contact
   end
 
   def show
-    @contact = Contact.find(params[:id])
   end
 
   def new
@@ -13,12 +15,11 @@ class ContactsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.find(params[:id])
     @action = 'update'
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    @contact = current_user.contact.build(contact_params)
 
     if @contact.save
       redirect_to contacts_path, alert: "Contact created successfully!"
@@ -28,7 +29,8 @@ class ContactsController < ApplicationController
   end
 
   def update
-    if Contact.find(params[:id]).update(contact_params)
+    if @contact.update(contact_params)
+    #if Contact.find(params[:id]).update(contact_params)
       redirect_to contacts_path, alert: "Contact updated successfully!"
     else
       render :edit, alert: "Failed to update contact!"
@@ -36,14 +38,20 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-    @contact = Contact.find(params[:id])
-    redirect_to contacts_path, notice: 'Contact destroyed with success.'
+    # @contact = Contact.find(params[:id])
     @contact.destroy
+    redirect_to contacts_path, notice: 'Contact destroyed with success.'
+    # @contact.destroy
   end
 
   private
 
+  def set_contact
+    @contact = current_user.contact.find(params[:id])
+  end
+
   def contact_params
     params.require(:contact).permit(:name, :phone)
   end
+
 end

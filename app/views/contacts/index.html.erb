@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2>Contacts</h2>
+  <h2 class="text-center">Contacts</h2>
 
   <table class="table responsible-table">
     <thead>
@@ -11,6 +11,14 @@
       </tr>
     </thead>
     <tbody>
+      <% if @contacts.empty? %>
+      <tr>
+        <td colspan="4" class="text-center">
+          <h3>No registered contacts.</h3>
+        </td>
+      </tr>
+      <% end %>
+      
       <% @contacts.each do |contact| %>
         <tr>
           <td><%= contact.id  %></td>
